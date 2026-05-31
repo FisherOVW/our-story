@@ -107,7 +107,14 @@
 
         .content h2 {
             color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+
+        .content h3 {
+            font-size: 1.1rem;
             margin-bottom: 10px;
+            font-weight: 600;
+            opacity: 0.8;
         }
 
         .content p {
@@ -184,63 +191,58 @@
 </head>
 <body>
 
-    <!-- Hidden Audio Player (Paramore - Still Into You) -->
     <audio id="bg-music" src="still-into-you.mp3" loop></audio>
 
-    <!-- Floating Music Toggle Button -->
     <button id="music-btn" onclick="toggleMusic()">🎵</button>
 
     <header>
-        <h1>Happy 1 Year, Beautiful! ❤️</h1>
+        <h1>Happy 1 Year, Tiff! ❤️</h1>
         <p>I should be over all the butterflies... but I'm still into you.</p>
         <div id="counter">Loading our time together...</div>
     </header>
 
     <section class="timeline">
         
-        <!-- Event 1 -->
         <div class="container left">
             <div class="content">
-                <h2>The Day We Met</h2>
-                <p>Change this text to tell the story of the day you first crossed paths. What caught your eye first, or a funny little detail from that day.</p>
+                <h2>May 8th, 2025</h2>
+                <h3>When It All Started (Unofficially)</h3>
+                <p>The day things changed. Write a little sentence here about what happened on May 8th—maybe a specific conversation, a text, or a moment where you realized you completely fell for her.</p>
             </div>
         </div>
 
-        <!-- Event 2 -->
         <div class="container right">
             <div class="content">
-                <h2>Our First Official Date</h2>
-                <p>Replace this with where you went, how nervous you were, or a memory from that night that still makes you smile.</p>
+                <h2>June 1st, 2025</h2>
+                <h3>Making It Official ❤️</h3>
+                <p>The best day of the summer. The exact moment I got lucky enough to call you my girlfriend. Best decision of my life.</p>
             </div>
         </div>
 
-        <!-- Event 3 -->
         <div class="container left">
             <div class="content">
-                <h2>When It Became Official</h2>
-                <p>The moment you finally asked her to be your girlfriend. Write about why it was the absolute easiest decision you've ever made.</p>
+                <h2>A Favorite Memory</h2>
+                <p>Think of a specific funny date, an inside joke you two still laugh about, or a lazy day you spent together over the last year and describe it here.</p>
             </div>
         </div>
 
-        <!-- Event 4 -->
         <div class="container right">
             <div class="content">
-                <h2>My Absolute Favorite Memory</h2>
-                <p>A spot for an inside joke, an adventure you took together, or just a lazy rainy day that you think about all the time.</p>
+                <h2>Happy 1 Year!</h2>
+                <p>And after a whole year, I'm still completely into you. Every single day has been an adventure. Happy Anniversary, Tiff! 🥰</p>
             </div>
         </div>
 
     </section>
 
     <footer>
-        <p>And after a whole year, I'm still into you. Happy Anniversary! 🥰</p>
+        <p>To Chapter 2. I love you! Every single day. Forever.</p>
     </footer>
 
     <script>
         // --- 1. LIVE TIME COUNTER SETTINGS ---
-        // Setting the anniversary to exactly 1 year ago today: May 31, 2025
-        // (JavaScript months are 0-indexed: 4 = May)
-        const anniversaryDate = new Date(2025, 4, 31, 0, 0, 0); 
+        // Anniversary set to May 8th, 2025 (Month index 4 = May)
+        const anniversaryDate = new Date(2025, 4, 8, 0, 0, 0); 
 
         function updateCounter() {
             const now = new Date();
