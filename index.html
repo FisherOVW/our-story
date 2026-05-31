@@ -26,6 +26,47 @@
             overflow-x: hidden;
         }
 
+        /* Welcome Overlay Screen for Autoplay Bypass */
+        #welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #ffd0cc;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100000;
+            transition: opacity 0.8s ease, visibility 0.8s;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #welcome-overlay h2 {
+            color: var(--accent-color);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        #enter-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            transition: transform 0.2s ease;
+        }
+
+        #enter-btn:hover {
+            transform: scale(1.05);
+        }
+
         /* Hero Section */
         header {
             height: 100vh;
@@ -191,8 +232,16 @@
 </head>
 <body>
 
+    <!-- Welcome Popup to Trick Browser Autoplay Blockers -->
+    <div id="welcome-overlay">
+        <h2>Hey Tiff, I made you something... 💌</h2>
+        <button id="enter-btn" onclick="startOurStory()">Open Secret Site</button>
+    </div>
+
+    <!-- Hidden Audio Player (Paramore - Still Into You) -->
     <audio id="bg-music" src="still-into-you.mp3" loop></audio>
 
+    <!-- Floating Music Toggle Button -->
     <button id="music-btn" onclick="toggleMusic()">🎵</button>
 
     <header>
@@ -203,6 +252,7 @@
 
     <section class="timeline">
         
+        <!-- Event 1 -->
         <div class="container left">
             <div class="content">
                 <h2>May 8th, 2025</h2>
@@ -211,6 +261,7 @@
             </div>
         </div>
 
+        <!-- Event 2 -->
         <div class="container right">
             <div class="content">
                 <h2>June 1st, 2025</h2>
@@ -219,6 +270,7 @@
             </div>
         </div>
 
+        <!-- Event 3 -->
         <div class="container left">
             <div class="content">
                 <h2>A Favorite Memory</h2>
@@ -226,6 +278,7 @@
             </div>
         </div>
 
+        <!-- Event 4 -->
         <div class="container right">
             <div class="content">
                 <h2>Happy 1 Year!</h2>
@@ -240,8 +293,28 @@
     </footer>
 
     <script>
+        const music = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
+        const overlay = document.getElementById('welcome-overlay');
+
+        // --- AUTOPLAY UNLOCK ON OVERLAY CLICK ---
+        function startOurStory() {
+            // Fade out overlay screen
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.visibility = 'hidden';
+            }, 800);
+
+            // Attempt to trigger the music player instantly
+            music.play().then(() => {
+                musicBtn.innerHTML = '⏸️';
+                musicBtn.classList.add('spinning');
+            }).catch((err) => {
+                console.log("Audio play blocked or still loading:", err);
+            });
+        }
+
         // --- 1. LIVE TIME COUNTER SETTINGS ---
-        // Anniversary set to May 8th, 2025 (Month index 4 = May)
         const anniversaryDate = new Date(2025, 4, 8, 0, 0, 0); 
 
         function updateCounter() {
@@ -261,7 +334,6 @@
 
         // --- 2. SCROLL ANIMATION LOGIC ---
         const containers = document.querySelectorAll('.container');
-        
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if(entry.isIntersecting) {
@@ -269,13 +341,9 @@
                 }
             });
         }, { threshold: 0.1 });
-
         containers.forEach(container => observer.observe(container));
 
-        // --- 3. MUSIC PLAYER LOGIC ---
-        const music = document.getElementById('bg-music');
-        const musicBtn = document.getElementById('music-btn');
-
+        // --- 3. MANUAL MUSIC PLAYER LOGIC ---
         function toggleMusic() {
             if (music.paused) {
                 music.play();
