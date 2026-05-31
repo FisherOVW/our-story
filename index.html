@@ -452,7 +452,10 @@ footer small{
 <body>
 
 <!-- ── AUDIO ── -->
-<audio id="bg-music" src="https://drive.google.com/uc?export=download&id=1lIbXSbg9MPA0MJxhGYr6ZfFOt3fY1X-z" loop></audio>
+<!-- Hidden YouTube audio player -->
+<iframe id="yt-player" width="0" height="0" style="position:absolute;opacity:0;pointer-events:none"
+  src="https://www.youtube.com/embed/Tld5PYcJMgw?enablejsapi=1&autoplay=0&loop=1&playlist=Tld5PYcJMgw"
+  allow="autoplay" frameborder="0"></iframe>
 <button id="music-btn" onclick="toggleMusic()">♪</button>
 
 <!-- ── LIGHTBOX ── -->
@@ -709,18 +712,51 @@ footer small{
 </div>
 
 <script>
-const music = document.getElementById('bg-music');
 const musicBtn = document.getElementById('music-btn');
 const overlay = document.getElementById('overlay');
+let player;
+let playing = false;
+
+// Load YouTube iframe API
+const tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+document.head.appendChild(tag);
+
+function onYouTubeIframeAPIReady(){
+  player = new YT.Player('yt-player',{
+    events:{
+      'onReady': function(e){
+        e.target.setVolume(80);
+      }
+    }
+  });
+}
 
 // ── ENTRY ──
 function enter(){
   overlay.style.opacity='0';
   setTimeout(()=>{overlay.style.visibility='hidden'},1400);
-  music.play().then(()=>{
+  setTimeout(()=>{
+    if(player && player.playVideo){
+      player.playVideo();
+      playing=true;
+      musicBtn.textContent='⏸';
+    }
+  }, 1000);
+}
+
+// ── MUSIC ──
+function toggleMusic(){
+  if(!player) return;
+  if(playing){
+    player.pauseVideo();
+    playing=false;
+    musicBtn.textContent='♪';
+  } else {
+    player.playVideo();
+    playing=true;
     musicBtn.textContent='⏸';
-    musicBtn.classList.add('spinning');
-  }).catch(()=>{});
+  }
 }
 
 // ── COUNTER ──
@@ -755,18 +791,7 @@ window.addEventListener('scroll',()=>{
   });
 },{passive:true});
 
-// ── MUSIC ──
-function toggleMusic(){
-  if(music.paused){
-    music.play();
-    musicBtn.textContent='⏸';
-    musicBtn.classList.add('spinning');
-  } else {
-    music.pause();
-    musicBtn.textContent='♪';
-    musicBtn.classList.remove('spinning');
-  }
-}
+
 
 // ── LIGHTBOX ──
 function openLB(card){
