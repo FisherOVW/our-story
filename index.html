@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 1 Year Anniversary! ❤️</title>
+    <style>
+        :root {
+            --bg-color: #fcf8f8;
+            --text-color: #3d3434;
+            --accent-color: #f25c54; /* Warm Paramore-inspired coral orange */
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(to bottom, #ffd0cc, var(--bg-color));
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+
+        /* Counter Styling */
+        #counter {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 20px;
+            background: var(--card-bg);
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* Timeline Section */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 0 20px;
+        }
+
+        /* The vertical line */
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--accent-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+
+        /* Timeline containers */
+        .container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+
+        /* Triggered by JS when scrolled into view */
+        .container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .left { left: 0; text-align: right; }
+        .right { left: 50%; text-align: left; }
+
+        /* The entry cards */
+        .content {
+            padding: 20px 30px;
+            background-color: var(--card-bg);
+            position: relative;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .content h2 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .content p {
+            font-size: 0.95rem;
+        }
+
+        /* Dots on the timeline */
+        .container::after {
+            content: '❤️';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            top: 15px;
+            background: var(--bg-color);
+            z-index: 1;
+            font-size: 1.2rem;
+        }
+
+        .right::after { left: -12px; }
+
+        /* Floating Music Player Button */
+        #music-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.8rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 9999;
+            transition: transform 0.3s ease;
+        }
+
+        #music-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Spinning animation when music plays */
+        .spinning {
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        /* Responsive design for mobile phones */
+        @media screen and (max-width: 600px) {
+            .timeline::after { left: 31px; }
+            .container { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .left { text-align: left; left: 0; }
+            .right { left: 0; }
+            .container::after { left: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hidden Audio Player (Paramore - Still Into You) -->
+    <audio id="bg-music" src="still-into-you.mp3" loop></audio>
+
+    <!-- Floating Music Toggle Button -->
+    <button id="music-btn" onclick="toggleMusic()">🎵</button>
+
+    <header>
+        <h1>Happy 1 Year, Beautiful! ❤️</h1>
+        <p>I should be over all the butterflies... but I'm still into you.</p>
+        <div id="counter">Loading our time together...</div>
+    </header>
+
+    <section class="timeline">
+        
+        <!-- Event 1 -->
+        <div class="container left">
+            <div class="content">
+                <h2>The Day We Met</h2>
+                <p>Change this text to tell the story of the day you first crossed paths. What caught your eye first, or a funny little detail from that day.</p>
+            </div>
+        </div>
+
+        <!-- Event 2 -->
+        <div class="container right">
+            <div class="content">
+                <h2>Our First Official Date</h2>
+                <p>Replace this with where you went, how nervous you were, or a memory from that night that still makes you smile.</p>
+            </div>
+        </div>
+
+        <!-- Event 3 -->
+        <div class="container left">
+            <div class="content">
+                <h2>When It Became Official</h2>
+                <p>The moment you finally asked her to be your girlfriend. Write about why it was the absolute easiest decision you've ever made.</p>
+            </div>
+        </div>
+
+        <!-- Event 4 -->
+        <div class="container right">
+            <div class="content">
+                <h2>My Absolute Favorite Memory</h2>
+                <p>A spot for an inside joke, an adventure you took together, or just a lazy rainy day that you think about all the time.</p>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        <p>And after a whole year, I'm still into you. Happy Anniversary! 🥰</p>
+    </footer>
+
+    <script>
+        // --- 1. LIVE TIME COUNTER SETTINGS ---
+        // Setting the anniversary to exactly 1 year ago today: May 31, 2025
+        // (JavaScript months are 0-indexed: 4 = May)
+        const anniversaryDate = new Date(2025, 4, 31, 0, 0, 0); 
+
+        function updateCounter() {
+            const now = new Date();
+            const difference = now - anniversaryDate;
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById('counter').innerHTML = 
+                `${days} Days : ${hours} Hours : ${minutes} Mins : ${seconds} Secs Together`;
+        }
+        setInterval(updateCounter, 1000);
+        updateCounter();
+
+        // --- 2. SCROLL ANIMATION LOGIC ---
+        const containers = document.querySelectorAll('.container');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        containers.forEach(container => observer.observe(container));
+
+        // --- 3. MUSIC PLAYER LOGIC ---
+        const music = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                musicBtn.innerHTML = '⏸️';
+                musicBtn.classList.add('spinning');
+            } else {
+                music.pause();
+                musicBtn.innerHTML = '🎵';
+                musicBtn.classList.remove('spinning');
+            }
+        }
+    </script>
+</body>
+</html>
