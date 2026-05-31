@@ -452,7 +452,7 @@ footer small{
 <body>
 
 <!-- ── AUDIO ── -->
-<audio id="bg-music" src="still-into-you.mp3" loop></audio>
+<audio id="bg-music" src="https://drive.google.com/uc?export=download&id=1lIbXSbg9MPA0MJxhGYr6ZfFOt3fY1X-z" loop></audio>
 <button id="music-btn" onclick="toggleMusic()">♪</button>
 
 <!-- ── LIGHTBOX ── -->
@@ -688,25 +688,25 @@ footer small{
   </div>
 </div>
 
-<!-- ════ SPREAD 4 — anniversary cover ════ -->
-<!-- PHOTO: replace 'spread4.jpg' -->
-<div class="spread" style="height:clamp(300px,50vh,520px)">
-  <div class="spread-img" style="background-image:url('spread4.jpeg')"></div>
-  <div class="spread-overlay right-text" style="background:linear-gradient(to top,rgba(26,20,16,.8) 0%,rgba(26,20,16,.1) 100%);align-items:flex-end">
-    <div class="spread-text fade-in">
+<!-- ════ SPREAD 4 + FOOTER — blended ════ -->
+<div style="position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;background-image:url('spread4.jpeg');background-size:cover;background-position:center"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(26,20,16,.25) 0%,rgba(26,20,16,.6) 50%,rgba(21,15,12,.97) 100%)"></div>
+
+  <div style="position:relative;z-index:2;height:clamp(300px,55vh,580px);display:flex;align-items:flex-end;justify-content:flex-end;padding:clamp(30px,5vw,70px)">
+    <div class="spread-text fade-in" style="text-align:right">
       <div class="spread-date">June 1st, 2026</div>
       <div class="spread-title">Happy<br><em>One Year.</em></div>
     </div>
   </div>
-</div>
 
-<!-- ════ FOOTER ════ -->
-<footer>
-  <div class="f-year">01</div>
-  <p>To Chapter 2 — and every one after.</p>
-  <p style="margin-top:8px;font-size:1.1rem">I love you, Tiff. Every single day.</p>
-  <small style="display:block;margin-top:24px">June 1st, 2025 — June 1st, 2026 &nbsp;·&nbsp; With love, Your Fishy 🐟</small>
-</footer>
+  <footer style="position:relative;z-index:2;background:transparent;border-top:1px solid rgba(200,169,126,.12)">
+    <div class="f-year">01</div>
+    <p>To Chapter 2 — and every one after.</p>
+    <p style="margin-top:8px;font-size:1.1rem">I love you, Tiff. Every single day.</p>
+    <small style="display:block;margin-top:24px">June 1st, 2025 — June 1st, 2026 &nbsp;·&nbsp; With love, Your Fishy 🐟</small>
+  </footer>
+</div>
 
 <script>
 const music = document.getElementById('bg-music');
